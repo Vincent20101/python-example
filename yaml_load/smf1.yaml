@@ -1,0 +1,602 @@
+apiVersion: smf.axyom.casa-systems.io/v1alpha1
+kind: SMF
+metadata:
+  labels:
+    testmanager-resource: 'true'
+  name: smf1
+spec:
+  adminState: RUNNING
+  affinity: null
+  axyomServices:
+  - autoscaler:
+      maxReplicas: 1
+      minReplicas: 1
+    livenessProbe: null
+    name: smfsm
+    resources: null
+    smfsmConfig:
+      apProfileMap:
+        default:
+          apMappingMap:
+            "404":
+              USER_UNKNOWN: true
+          apTempValidityTime: 36000
+      dualStackPreference: ''
+      enableDnnSelMode: false
+      enableSlaac: false
+      latencySamplingPercentage: 0
+      nfInterfaceConfig:
+        namf:
+          namfSvcApiFullVersion:
+            preferredApiVersion: "2.0.0.vzw2021-0-2"
+            supportedApiVersions:
+            - "2.0.0.vzw2021-0-2"
+            - "2.0.0.vzw2021-0-1"
+        nchf:
+          nchfApiVersion: v2
+          nchfSvcApiFullVersion:
+            preferredApiVersion: "2.0.0.vzw2021-0-2"
+            supportedApiVersions:
+            - "2.0.0.vzw2021-0-2"
+            - "2.0.0.vzw2021-0-1"
+        nnrf:
+          excludedDiscParams:
+            amf:
+              guami: true
+            chf:
+              supi: true
+            pcf:
+              supi: true
+          healthCheck:
+            consecSuccOrFail: 50
+            disable: true
+            interval: 100000
+          nnrfSvcApiFullVersion:
+            preferredApiVersion: "2.0.0.vzw2021-0-2"
+        npcf:
+          npcfSvcApiFullVersion:
+            preferredApiVersion: "2.0.0.vzw2021-0-2"
+            supportedApiVersions:
+            - "2.0.0.vzw2021-0-2"
+            - "2.0.0.vzw2021-0-1"
+        nudm:
+          discCombineSvc: true
+          nudmSvcApiFullVersion:
+            preferredApiVersion: "2.0.0.vzw2021-0-2"
+            supportedApiVersions:
+            - "2.0.0.vzw2021-0-2"
+            - "2.0.0.vzw2021-0-1"
+          subscriptionCfg:
+            expires: 3600
+      opSpecificEPCOContainerDefaultValues:
+        FF00: "7"
+        FF03: "8"
+        FF04: "9"
+      operatorOption: VzW_Phase_2
+      sdmSubscriptionCfg:
+        expires: 0
+        implicitUnsubscribe: false
+      shutdownGracePeriod: "1m"
+      smfInstanceId: "794b8294-e919-44d4-a579-efb657e0ac7a"
+      smfMicroSvcGrpcConfig:
+        pfcpSvcGrpc:
+          defaultTimer:
+            interval: 7000
+      smfServingArea: ''
+  - autoscaler:
+      maxReplicas: 1
+      minReplicas: 1
+    livenessProbe: null
+    name: upfmgr
+    resources: null
+    upfMgrConfig:
+      batchReleaseSize: 100
+      headerEncryptionCfgMap:
+        header1:
+          algorithm: AES-CBC-128
+          encryptionKey: "99887766554433221100aabbccddeef2"
+          initializationVector: "11223344556677889900112233445562"
+        header2:
+          algorithm: AES-CBC-256
+          encryptionKey: "99887766554433221100aabbccddeeff99887766554433221100aabbccddeeff"
+          initializationVector: "1122334455667788990011223344556611223344556677889900112233445566"
+      heartBeat:
+        disable: false
+        interval: 10000
+        retries: 10
+        retryInterval: 2000
+      hostPoolMap:
+        defined-servers:
+          ipv4AddrRanges:
+          - end: "137.188.84.255"
+            start: "137.188.84.252"
+          - end: "162.115.20.255"
+            start: "162.115.20.252"
+          ipv4Addresses:
+          - "17.149.240.65/32"
+          - "17.149.240.70/32"
+          - "17.171.27.65/32"
+          - "17.122.193.70/32"
+          ipv6AddrRanges:
+          - end: ab12:2211:0:1::44
+            start: ab12:2211:0:1::33
+          - end: ab12:2211:0:1::66
+            start: ab12:2211:0:1::55
+          ipv6Addresses:
+          - ab12:2211:0:1::11/24
+          - ab12:2211:0:1::22/24
+        pmb-servers:
+          ipv4AddrRanges:
+          - end: "137.188.84.255"
+            start: "137.188.84.252"
+          - end: "162.115.20.255"
+            start: "162.115.20.252"
+          - end: "162.115.43.246"
+            start: "162.115.43.245"
+          - end: "162.115.212.255"
+            start: "162.115.212.252"
+          - end: "162.115.235.246"
+            start: "162.115.235.245"
+          ipv4Addresses:
+          - "162.115.208.59/32"
+          - "137.188.80.59/32"
+          - "162.115.16.59/32"
+        sapmb-servers:
+          ipv4Addresses:
+          - "17.149.240.65/32"
+          - "17.149.240.70/32"
+          - "17.171.27.65/32"
+          - "17.122.193.70/32"
+          - "17.171.27.26/32"
+          - "17.171.27.75/32"
+          - "17.122.193.74/32"
+          - "17.171.27.33/32"
+        sapmb-servers-2:
+          ipv4Addresses:
+          - "17.149.240.20/32"
+          - "17.149.240.21/32"
+          - "17.149.240.22/32"
+          - "17.171.27.27/32"
+          - "17.171.27.28/32"
+          - "17.171.27.29/32"
+          - "17.171.27.33/32"
+        sapmb-servers-3:
+          ipv4Addresses:
+          - "17.178.10.1/32"
+          - "17.178.10.2/32"
+          - "17.178.11.1/32"
+          - "17.178.11.2/32"
+          - "17.32.218.1/32"
+          - "17.32.218.2/32"
+          - "17.32.219.1/32"
+          - "17.32.219.2/32"
+      pfds:
+      - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+        kind: AppPfdDataConfig
+        name: saappleallow
+      - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+        kind: AppPfdDataConfig
+        name: dnsallow
+      - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+        kind: AppPfdDataConfig
+        name: pmballow
+      - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+        kind: AppPfdDataConfig
+        name: wspmbredirecthttp
+      - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+        kind: AppPfdDataConfig
+        name: usgdnsallow
+      - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+        kind: AppPfdDataConfig
+        name: netflix
+      - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+        kind: AppPfdDataConfig
+        name: defined-embb
+      - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+        kind: AppPfdDataConfig
+        name: defined-invalid-appid
+      sgwcTriggerBatchRelCfg:
+        batchReleaseDelay: 30
+      sniPoolMap:
+        tlsSniPool1:
+          sniValues:
+          - x-streams-revvel-stgec.uplynk.com
+          - streams-a.revvel-static.io
+          - streams-b.revvel-static.io
+        tlsSniPool2:
+          sniValues:
+          - x-streams-revvel-stgec-v2.uplynk.com
+          - streams-a.revvel-static-v2.io
+          - streams-b.revvel-static-v2.io
+      upFailureDelay: 5
+      upfMgrTimer:
+        n1: 3
+        t1: 500
+        t2: 5000
+      upfTriggerBatchRelCfg:
+        batchReleaseDelay: 30
+      userIdEncryptionCfg:
+        algorithm: AES-CBC-128
+        encryptionKey: "99887766554433221100aabbccddeef1"
+        initializationVector: "11223344556677889900112233445561"
+      validationCfgMap:
+        validation1:
+          algorithm: HMAC-SHA-256
+          validationKey: "1122334411"
+        validation2:
+          algorithm: HMAC-SHA-3
+          validationKey: "1122334422"
+  - autoscaler:
+      maxReplicas: 1
+      minReplicas: 1
+    livenessProbe: null
+    n4Config:
+      grpcClientTimeout: 3
+      n4Timer:
+        n1: 3
+        t1: 500
+        t2: 5000
+    name: n4
+    resources: null
+  - autoscaler:
+      maxReplicas: 1
+      minReplicas: 1
+    gtpcConfig:
+      echo:
+        disable: false
+        interval: 10000
+        retries: 10
+        retryInterval: 2000
+      grpcClientTimeout: 8
+      timer:
+        n3: 3
+        t3: 2200
+        t4: 10000
+    livenessProbe: null
+    name: gtpc
+    resources: null
+  - autoscaler:
+      maxReplicas: 1
+      minReplicas: 1
+    livenessProbe: null
+    name: timermgr
+    resources: null
+    timerSvcCfg:
+      taskqCnt: 1
+  - autoscaler:
+      maxReplicas: 1
+      minReplicas: 1
+    liMgrConfig:
+      admfServerPort: 8443
+      crtVerifyMode: OneWayCheck
+      enableLimgr: true
+      encryptionEnabled: true
+      extHttpPort: 8443
+      httpPort: 8443
+      t3:
+        keepAliveDisabled: false
+        keepAlivePeriod: 60
+        overtimePeriod: 180
+        t3Path:
+          admfPath: /X1/ADMF
+          nePath: ''
+        tlsSecretName: t3-secret
+      t3ServerPort: 8090
+      tlsDisable: false
+      x1:
+        admfMap:
+          Admf1: smf1-smftester
+          admf2: smf1-smftester
+          admf3: smf1-smftester
+          admf4: smf1-smftester
+          admf5: smf1-smftester
+          admf6: smf1-smftester
+        deactivateAllTasksEnabled: true
+        keepAliveDisabled: false
+        keepAliveTimeoutAction: DeactivateAllTasks
+        maxSendTime: 5
+        overtimePeriodSec: 2
+        recTimeout: 15
+        removeAllDestinationsEnabled: true
+        tlsSecretName: x1-secret
+        x1Path:
+          admfPath: /X1/ADMF
+          nePath: /X1/NE
+      x2:
+        dynamicConnEnabled: false
+        keepAlivePeriod: 60
+        overtimePeriod: 180
+        tlsSecretName: x2-secret
+    livenessProbe: null
+    name: nflimgr
+    resources: null
+  db: rfs-smffailover:26379
+  featureFlags: 402653184
+  featureOptions:
+    addSbaHeaderCorrelation: true
+    addSbaHeaderOriginTimestamp: true
+    addSbaHeaderPriority: true
+    alwaysReportUeLocToPcf: true
+    disableSelectSmDataByIwkEpsInd: true
+    disableSubscribeUeReachability: true
+    enableErrorHandlingSet1: true
+    enableNewGRPCPorts: true
+    enablePagingRetryBackoff: true
+    enableReadinessProbe: true
+    enableTimerToRelS5uWhenHO54: true
+    excludeAccNetChIdsToPcf: true
+    includeUePdnInfoToUpf: true
+    ipPoolMgmtBySmf: true
+    nfSet: true
+    selectApiVersionByPreference: true
+    selectNFStaticPreferred: true
+    selectNfWithRequesterFqdn: true
+    selectNfWithSmfLocality: true
+    useUdmVirtualApn: true
+  imagePullPolicy: Always
+  images:
+    axyom-sidecar: registry.gitlab.casa-systems.com/platform/operators/axyom-sidecar
+    gtpc: registry.gitlab.casa-systems.com/mobility/smf/gtpc
+    n4: registry.gitlab.casa-systems.com/mobility/smf/pfcp
+    nflimgr: registry.gitlab.casa-systems.com/mobility/smf/limgr
+    nrf-agent: registry.gitlab.casa-systems.com/mobility/nrf/nrf-agent
+    smfsm: registry.gitlab.casa-systems.com/mobility/smf/sm
+    timermgr: registry.gitlab.casa-systems.com/platform/timer
+    upfmgr: registry.gitlab.casa-systems.com/mobility/smf/upfmgr-svc
+  interfaces:
+  - name: upfmgr
+    type: ClusterIP
+  ipPools:
+    coke1-v4-pool:
+      allocateUeIpBySmf: false
+      isIpv6: false
+      isPublic: false
+      subnets:
+      - "1.2.3.0/24"
+      validatePoolName: true
+    coke1-v6-pool:
+      allocateUeIpBySmf: false
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "5:6:7::/56"
+      validatePoolName: true
+    int41:
+      allocateUeIpBySmf: true
+      isIpv6: false
+      isPublic: false
+      subnets:
+      - "172.16.2.0/24"
+      validatePoolName: false
+    int42:
+      allocateUeIpBySmf: false
+      isIpv6: false
+      isPublic: true
+      subnets:
+      - "11.2.3.0/24"
+      validatePoolName: true
+    int54:
+      allocateUeIpBySmf: true
+      isIpv6: false
+      isPublic: false
+      subnets:
+      - "172.16.3.0/24"
+      validatePoolName: false
+    int56:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:8::/56"
+      validatePoolName: false
+    int61:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:3::/56"
+      validatePoolName: false
+    int62:
+      allocateUeIpBySmf: false
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "15:6:7::/56"
+      validatePoolName: true
+    private-ipv4:
+      allocateUeIpBySmf: true
+      isIpv6: false
+      isPublic: false
+      subnets:
+      - "172.16.1.0/24"
+      validatePoolName: false
+    upf-c-virtual-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:2::/56"
+      validatePoolName: false
+    upf-c-vzwinternet-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "22:0:3::/56"
+      validatePoolName: false
+    upf-f-virtual-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:9::/56"
+      validatePoolName: false
+    upf-f-vzwinternet-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:7::/56"
+      validatePoolName: false
+    upf-f-vzwinternet2-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "22:0:8::/56"
+      validatePoolName: false
+    upf-s-virtual-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "102:0:2::/56"
+      validatePoolName: false
+    upf-s-virtual-ipv6-2:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "32:0:3::/56"
+      validatePoolName: false
+    upf-s-vzwaudit-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:4::/56"
+      validatePoolName: false
+    upf-s-vzwemergency-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "121:0:7::/56"
+      validatePoolName: false
+    upf-s-vzwinternet-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "52:0:3::/56"
+      validatePoolName: false
+    upf-s-vzwinternet-ipv6-2:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "202:0:2::/56"
+      validatePoolName: false
+    upf-s-vzwinternet2-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:6::/56"
+      validatePoolName: false
+    upf-s-vzwinternet3-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "32:0:8::/56"
+      validatePoolName: false
+    upf-s-vzwinternet4-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:b::/56"
+      validatePoolName: false
+    upf-s-vzwinternet5-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:c::/56"
+      validatePoolName: false
+    upf-s-vzwinternet6-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "12:0:d::/56"
+      validatePoolName: false
+    upf-t-virtual-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "120:0:9::/56"
+      validatePoolName: false
+    upf-t-vzwinternet-ipv6:
+      allocateUeIpBySmf: true
+      ipPoolChangeWaitTime: "30m"
+      isIpv6: true
+      isPublic: true
+      subnets:
+      - "121:0:9::/56"
+      validatePoolName: false
+  latencySamplingPercentage: 0
+  logLevel: trace
+  networkFunctions:
+  - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+    kind: NetworkFunction
+    name: nrf1
+  pfdMgmtConfiguration:
+    staticAppIds:
+    - app-id-1
+    - netflix
+  plmnList:
+  - mcc: "310"
+    mnc: "010"
+  smfServices:
+  - serviceName: nsmf-pdusession
+    versions:
+    - apiFullVersion: "1.0.0.vzw2021-0-2"
+      apiVersionInUri: v1
+  upfs:
+  - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+    kind: Upf
+    name: upf-s
+  - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+    kind: Upf
+    name: upf-c
+  - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+    kind: Upf
+    name: upf-t
+  - apiVersion: smf.axyom.casa-systems.io/v1alpha1
+    kind: Upf
+    name: upf-f
+---
+apiVersion: smf.axyom.casa-systems.io/v1alpha1
+kind: NetworkFunction
+metadata:
+  labels:
+    testmanager-resource: 'true'
+  name: nrf1
+spec:
+  host: smf1-smftester
+  type: NRF
+

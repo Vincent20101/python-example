@@ -1,0 +1,2 @@
+python run.py data.json upfMap/upf-s/nfProfile/t3Addr
+python load.py smf1.yaml

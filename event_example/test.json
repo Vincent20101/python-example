@@ -1,0 +1,20 @@
+{
+  "events": [
+    {
+      "hdr": {
+        "evntType": "Gtpc_CreateSessRsp",
+        "stepSeqNo": 8,
+        "direction": "receive",
+        "srcNfName": "smf1",
+        "dstNfName": "sgwc1"
+      },
+      "event": {
+        "Header": {
+          "Version": 2,
+          "TeidPresent": true,
+          "Length": 221
+        }
+      }
+    }
+  ]
+}
